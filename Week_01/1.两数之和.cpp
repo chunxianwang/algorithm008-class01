@@ -1,7 +1,7 @@
-/*
+/*在文件夹修改
  * @lc app=leetcode.cn id=1 lang=cpp
  *
- * [1] 两数之和
+ * [1] 两数之和 
  */
 
 // @lc code=start
@@ -38,8 +38,10 @@ public:
                 return {i , m[target-nums[i]]};
         }
         return {};
-        #endif  
-    };
+        #endif
+    }
 };
+
+
 // @lc code=end
 
