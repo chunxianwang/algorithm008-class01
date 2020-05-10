@@ -1,47 +1,46 @@
 /*
- * @lc app=leetcode.cn id=17 lang=cpp
+ * @lc app=leetcode.cn id=15 lang=cpp
  *
- * [17] 电话号码的字母组合
+ * [15] 三数之和
  */
 
 // @lc code=start
+#include<vector>
+using namespace std;
+/*
+解体思路：
+三个指针，其中一个是枚举指针，另外两个是左右指针；
+这三个指针都要考虑数组中元素重复的情况
+
+*/
+
+
 class Solution {
 public:
-    //1. 用map记录每个数字按键对应的所有字母
-    map<char, string> M = {
-        {'2', "abc"}, {'3', "def"}, {'4', "ghi"}, {'5', "jkl"}, {'6', "mno"},
-        {'7', "pqrs"}, {'8', "tuv"}, {'9', "wxyz"}
-    };
-    //2. 存储最终结果和临时结果的变量
-    vector<string> ans;
-    string current;
-
-    //3. DFS函数，index是生成临时结果字串的下标，
-    //每一个digits[index]数字对应临时结果current[index]的一位字母
-    void DFS(int index, string digits) {
-        //出口
-        if(index == digits.size()) {
-            ans.push_back(current);
-            return;
+    vector<vector<int>> threeSum(vector<int>& nums) {
+        vector<vector<int>> ans;
+        int n = nums.size();
+        sort(nums.begin(), nums.end());
+        for (int i=0; i < n-2; i++) {
+            if (nums[i] > 0) break;  //加速循环
+            int left = i + 1;
+            int right = n - 1;
+            if (i > 0 && nums[i] == nums[i-1]) continue; //枚举元素，数据重复
+            while (left < right) {
+                int sum = nums[i] + nums[left] + nums[right];
+                if (sum > 0) {
+                    right--;
+                } else if (sum < 0) {
+                    left++;
+                } else {
+                    ans.push_back({nums[i], nums[left], nums[right]});
+                    while (left < right && nums[left] == nums[++left]);  //左指针元素，数据重复
+                    while (left < right && nums[right] == nums[--right]);//右指针元素，数据重复
+                }
+            } 
         }
-        //递归调用
-        //对于当前输入的第index号数字(digits[index])，
-        //枚举其对应的所有字母(M[digits[index]][i])
-        for(int i = 0; i < M[digits[index]].size(); i++) {
-            current.push_back(M[digits[index]][i]);     //临时结果压入一个字母
-            DFS(index + 1, digits);         //以在当前位置压入该字母这一“情况”为前提，构造此“分支”的后续结果
-            current.pop_back();             //状态还原，例如临时结果从 "ab" -> "a"，下一次循环尝试"ac" 
-        }
-    }
-
-    vector<string> letterCombinations(string digits) {
-        if(digits.size() == 0) {
-            return ans;
-        }
-        DFS(0, digits);
         return ans;
     }
-
 };
 // @lc code=end
 
