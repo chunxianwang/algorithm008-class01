@@ -27,8 +27,16 @@ public:
         }
         for(auto n : t) {
             auto it = um.find(n);
-            if (it == um.end() || --it->second < 0) 
+            if (it == um.end() || --it->second < 0)
             return false;
+            //以上三行的这种写法，执行时间往往是<=20ms，打败45%及以上
+            /*
+            另外一种低效写法，执行时间一般>=30ms，仅仅打败35%及以下
+            //auto it = um.find(n); //不使用迭代器
+            if (um.find(n) == um.end() || --um[n] <0)
+            return false
+            //分析原因，实质上是多做了一次hash_map查询
+            */
         }
         return true; 
     }
@@ -42,12 +50,12 @@ public:
     bool isAnagram(string s, string t) {
         if (s.size() != t.size()) return false;
         int n = s.size();
-        unordered_map<char, int> counts;
+        unordered_map<char, int> um;
         for (int i = 0; i < n; i++) {
-            counts[s[i]]++;
-            counts[t[i]]--;
+            um[s[i]]++;
+            um[t[i]]--;
         }
-        for (auto n :counts) 
+        for (auto n :um) 
             if (n.second) return false;
         return true;
     }

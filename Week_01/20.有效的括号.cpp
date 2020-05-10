@@ -18,16 +18,15 @@ public:
         枚举结束时，判断栈是否空，非空则返回false
         */
         unordered_map<char, int> m{{'(', 1}, {'{', 2}, {'[', 3}, {')', 4}, {'}', 5}, {']', 6}};
-        bool isTrue = true;
         stack<char> st;
         for (char c:s) {
             int flag = m[c];
             if(flag >=1 && flag<=3) st.push(c);
             else if (!st.empty() && m[st.top()] == (flag - 3)) st.pop();
-            else {isTrue = false; break;}
+            else return false;
         }
-        if (!st.empty()) isTrue = false;
-        return isTrue;
+        if (!st.empty()) return false;
+        return true;
     }
 };
 // @lc code=end

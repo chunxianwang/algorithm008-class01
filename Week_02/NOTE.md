@@ -27,7 +27,7 @@ int main()
     //查询某个key的elements数量，注意不是value值，是map中某个key的数量
     int nums_PI = um.count("PI");
     //容器尺寸
-    int sz = um.size();
+    int sz = umap.size();
     string key = "PI";
     //查询某key的iterator
     if (umap.find(key) == umap.end())
@@ -100,7 +100,7 @@ void PostOrder(TreeNode* root) {
 根节点A、左子树B和右子树C
 <img src="https://gitee.com/chunxianwang/ImageHost/raw/master/uPic/binarytree.png" width=256 height=256 />
 
-1.前序列遍历
+1.前序遍历
 
     前序遍历思路：
     不断获取当前根节点，获取后马上访问根节点的值，
@@ -116,7 +116,7 @@ void PostOrder(TreeNode* root) {
             栈中暂存右子树；
         根节点指向左子树
     根节点指向栈顶暂存的右子树，弹栈顶；
-2.后序列遍历
+2.后序遍历
 
     后序遍历思路：用前序遍历相似的方法，后序遍历与前序遍历对称，
     遍历完成后把结果进行逆序处理

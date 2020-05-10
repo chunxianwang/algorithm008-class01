@@ -16,6 +16,7 @@
 class Solution {
 public:
     ListNode* addTwoNumbers(ListNode* l1, ListNode* l2) {
+#if 1
         int carry = 0;
         int sum = 0;
         ListNode* newhead = new ListNode(0, nullptr);//创建新链表头
@@ -31,7 +32,11 @@ public:
             l2 = l2?l2->next:l2;
         }
         return newhead->next;//返回链表头指向的下一个节点
+#endif
+          
     }
+
+
 };
 // @lc code=end
 

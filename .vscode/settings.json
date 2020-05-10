@@ -14,6 +14,11 @@
         "map": "cpp",
         "queue": "cpp",
         "stack": "cpp",
-        "string_view": "cpp"
+        "string_view": "cpp",
+        "__hash_table": "cpp",
+        "__tree": "cpp",
+        "bitset": "cpp",
+        "initializer_list": "cpp",
+        "random": "cpp"
     }
 }
