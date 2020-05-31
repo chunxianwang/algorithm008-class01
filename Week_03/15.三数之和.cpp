@@ -11,7 +11,6 @@ using namespace std;
 解体思路：
 三个指针，其中一个是枚举指针，另外两个是左右指针；
 这三个指针都要考虑数组中元素重复的情况
-
 */
 
 
@@ -22,7 +21,7 @@ public:
         int n = nums.size();
         sort(nums.begin(), nums.end());
         for (int i=0; i < n-2; i++) {
-            if (nums[i] > 0) break;  //加速循环
+            if (nums[i] > 0) break;  //加快循环结束条件
             int left = i + 1;
             int right = n - 1;
             if (i > 0 && nums[i] == nums[i-1]) continue; //枚举元素，数据重复

@@ -1,4 +1,4 @@
-/*
+/* 5.25
  * @lc app=leetcode.cn id=45 lang=cpp
  *
  * [45] 跳跃游戏 II
@@ -10,21 +10,26 @@
 
 // @lc code=start
 #if 0
-//正向
+//正向: 遍历数组，维护当前位置最远可达边界maxPos; 
+//     维护‘当前步’的最远可达位置，如果到达，则步数+1，且更新‘当前步’的最远可达位置；
+//     注意：题目中有能到达最远位置的前提条件，在遍历数组时，我们不访问最后一个元素， 即i<nums.size()-1；
+//          这是因为在访问最后一个元素之前，我们的边界一定大于等于最后一个位置，否则就无法跳到最后一个位置了。
+//          如果访问最后一个元素，在边界正好为最后一个位置的情况下，我们会增加一次「不必要的跳跃次数」，
+//          因此我们不必访问最后一个元素。
 class Solution {
 public:
     int jump(vector<int>& nums) {
-        int maxPos = 0, n = nums.size(), end = 0, step = 0;
-        for (int i = 0; i < n - 1; ++i) {
+        int maxPos = 0, steps = 0, end = 0;;
+        for (int i=0; i<nums.size()-1; i++) {
             if (maxPos >= i) {
-                maxPos = max(maxPos, i + nums[i]);
+                maxPos = max(reach, i + nums[i]);
                 if (i == end) {
+                    steps++;
                     end = maxPos;
-                    ++step;
                 }
             }
         }
-        return step;
+        return steps;
     }
 };
 #endif

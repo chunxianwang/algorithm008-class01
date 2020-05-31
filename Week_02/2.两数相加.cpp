@@ -16,7 +16,7 @@
 class Solution {
 public:
     ListNode* addTwoNumbers(ListNode* l1, ListNode* l2) {
-#if 1
+#if 0
         int carry = 0;
         int sum = 0;
         ListNode* newhead = new ListNode(0, nullptr);//创建新链表头
@@ -27,13 +27,25 @@ public:
             ListNode* node = new ListNode(sum%10, nullptr);//不停地new ListNode，比较消耗时间
             nownode->next = node;
             nownode = nownode->next;
-            
             l1 = l1?l1->next:l1;
             l2 = l2?l2->next:l2;
         }
         return newhead->next;//返回链表头指向的下一个节点
 #endif
-          
+#if 1
+//国外高票代码，11行实现相同方法
+        ListNode newhead(0, nullptr), *currentnode = &newhead;
+        int carry = 0;
+        while (l1 || l2 || carry) {
+            int sum = (l1 ? l1->val : 0) + (l2 ? l2->val : 0) + carry;
+            carry = sum / 10;
+            currentnode->next = new ListNode(sum % 10);
+            currentnode = currentnode->next;
+            l1 = l1 ? l1->next : l1;
+            l2 = l2 ? l2->next : l2;
+        }
+        return newhead.next;
+#endif         
     }
 
 

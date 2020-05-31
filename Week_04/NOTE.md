@@ -101,6 +101,20 @@ while left <= right:
 动态规划：保存每一步的结果，可以用以前结果对当前进行选择，有回退功能；
 
 **贪心算法适用场景**
-问题能分解成子问题，子问题的最优解能地推得到全局的最优解
-一般称这类问题为：**最优子结构**
+问题能分解成子问题，子问题的最优解能等价于整个问题的最优解
 
+## 总结容器 set VS map, 以及附加unordered_
+首先，两者都是基于红黑树实现，都是常用的数据容器
+note：想了解红黑树？请移步到：[红黑树（一）之：原理和算法详细介绍](https://www.cnblogs.com/skywang12345/p/3245399.html#a2)
+再说set 和 map的区别：
+**set:集合**，容器中存放着键；    迭代器（保存着键）是const，不允许修改；不可下标访问
+**map:映射**，容器中存放着键-值对；迭代器中key不能修改，value能被修改；可以下标访问value，通过map_element[key]的方式得到key对应的value
+
+unordered_前缀表示用hash哈希来实现相关容器
+
+unordered_set 和 unordered_map的常见操作函数：
+1. find(key)，返回包含key的迭代器，有，返回迭代器；没有，返回迭代器unordered_set uset.end() 或 unordered_map umap.end()，可通过判断uset(key) == uset.end();判断set中不包含key。
+2. count(key)，返回是否有包含key的迭代器，有，返回1；没有，返回0。
+3. erase(key)，删除
+4. **umap.insert(std::make_pair(key, value))** 或 uset.insert(key) ，插入
+5. 
