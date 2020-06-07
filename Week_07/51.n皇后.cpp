@@ -3,30 +3,12 @@
  *
  * [51] N皇后
  */
-
-
-/**
- * @file 51.n皇后.cpp
- * @author your name (you@domain.com)
- * @brief 思路：回溯思路，一行只能放入一个皇后，因此回溯每一行，从当前行进入到下一行；
- * 在当前行，对每一个列元素尝试放入皇后，并判断是否和棋盘上已放入的行有冲突，无冲突，把当前行存入棋盘，并进入下一行；
- * 如果棋盘所有行都被摆满，则说明已经得到一个结果；存入结果数组；回退，寻找是否有其它满足要求的棋局。
- * 
- * 伪代码：
- *    
- * 
- * @version 0.1
- * @date 2020-05-24
- * 
- * @copyright Copyright (c) 2020
- * 
- */
-
 #include<vector>
 using namespace std;
+
+
 // @lc code=start
 class Solution {
-private:
     vector<vector<string>> res;  //存结果
     vector<string> board;  //存棋盘
 

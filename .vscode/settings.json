@@ -38,6 +38,7 @@
         "condition_variable": "cpp",
         "algorithm": "cpp",
         "chrono": "cpp",
-        "limits": "cpp"
+        "limits": "cpp",
+        "unordered_set": "cpp"
     }
 }
