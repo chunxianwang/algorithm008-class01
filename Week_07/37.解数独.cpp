@@ -56,11 +56,10 @@ private:
                 visitCol[col][i] = false;
                 visitBox[boxIndex][i] = false;
             }
+            return false;
         }
 //递归step3:进入到下一层
         else return backTrace(board, row+(col+1)/9, (col+1)%9);
-//属于上面if(true) 的补充return语句；
-        return false;
     }
 
 };

@@ -33,10 +33,29 @@ public:
         return newhead->next;//返回链表头指向的下一个节点
 #endif
 #if 1
+        int carry = 0;
+        int sum = 0;
+        ListNode newhead(0, nullptr);  //直接定义对象
+        ListNode* currentNode = &newhead;
+        while (l1 || l2 || carry) {
+            sum = (l1 ? l1->val : 0) + (l2 ? l2->val : 0) + carry;
+            carry = sum/10;
+            ListNode* node = new ListNode(sum%10, nullptr);  //定义对象指针
+            currentNode->next = node;
+            currentNode = currentNode->next;
+            l1 = l1 ? l1->next : l1;
+            l2 = l2 ? l2->next : l2;
+        }
+        return newhead.next;
+
+#endif
+
+#if 0
 //国外高票代码，11行实现相同方法
         ListNode newhead(0, nullptr), *currentnode = &newhead;
         int carry = 0;
         while (l1 || l2 || carry) {
+            std::cout<<carry<<std::endl;
             int sum = (l1 ? l1->val : 0) + (l2 ? l2->val : 0) + carry;
             carry = sum / 10;
             currentnode->next = new ListNode(sum % 10);

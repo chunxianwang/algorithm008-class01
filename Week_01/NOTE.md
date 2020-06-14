@@ -74,5 +74,66 @@ return newhead->next;//提交最终结果
    图概述：https://www.jianshu.com/p/bce71b2bdbc8
 作业题目
 
+### sort() 函数 自定义compare用法
+* 两参数，默认升序排列
+```c++
+int a[] = {45, 6, 78, 9,102, 4};
+sort(a.begin(), a.end()) //默认升序排列
+```
 
+* 三参数，自定义升、降序排列
+```c++ 
+//compare 模板
+bool compare(int a, int b) {
+   return a < b;  //升序
+   return a > b;  //降序
+}
+int a[] = {45, 6, 78, 9,102, 4};
+sort(a, a+6, compare)
+```
 
+* 三参数，容器
+  容器，可直接用greater<type>()或less<type>()排序
+  ```c++
+  int a[] = {45, 6, 78, 9,102, 4};
+  vector<int> arr(a, a+6);
+  sort(arr.begin(), arr.end(), greater<int>());
+  sort(arr.begin(), arr.end(), less<int>());
+  ```
+  ```c++
+    std::sort(detectors.begin(), detectors.end(), [&](const VisionObject& a, const VisionObject& b) -> bool {
+              return a.bbox_.y + a.bbox_.height - a.camera_index_ * height_ >
+                     b.bbox_.y + b.bbox_.height - b.camera_index_ * height_;
+            });  //在sort内部定义compare
+  ```
+* 两参数，class或struct
+   在类内部重载<运算符，定义排序规则，升序或降序
+  ```c++
+  typedef struct student{
+      char  name[20];
+      int math;
+      //按math降序排列
+      inline bool operator < (const student &x) const {   //重载 < 运算符号
+         return math > x.math; //降序
+         return math < x.mathl //升序
+      }
+   }Student;
+   main(){
+      Student a[4]={{"apple",67},{"limei",90},{"apple",90}};
+      sort(a,a+3);
+   }
+  ```
+  
+  
+### 堆栈概念总结
+  堆(stack)栈(heap)出现在两个地方：计算机内存结构 和 数据结构，有联系也有差别，在此进行总结
+
+#### 内存中的堆区、栈区
+* 栈区（stack）：由编译器自动分配释放，存放函数的参数值，局部变量的值等。其操作方式类似于数据结构中的栈。先入后出。
+* 堆区（heap）：一般由程序员分配释放，若程序员不释放，程序结束时可能由操作系统回收。注意它与数据结构中的堆是两回事，其分配方式倒是类似于链表。
+  
+#### 数据结构中的堆 和 栈
+* 栈：先入后出的数据结构
+* 堆：堆是一种经过排序的树形数据结构，每个节点都有一个值，通常我们所说的堆的数据结构是指二叉树。所以堆在数据结构中通常可以被看做是一棵树的数组对象。而且堆需要满足一下两个性质：
+（1）堆中某个节点的值总是不大于或不小于其父节点的值；
+（2）堆总是一棵完全二叉树

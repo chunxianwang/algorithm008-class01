@@ -9,7 +9,6 @@
 如row[i][9] == 1; 表示第i行，出现过9； col[j][5] == 0，表示第j列，没出现过5;
 
 board索引 (index_row/3)*3 + index_col/3
-
 */
 // @lc code=start
 class Solution {
@@ -35,4 +34,3 @@ public:
     }
 };
 // @lc code=end
-

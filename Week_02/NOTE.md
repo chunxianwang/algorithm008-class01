@@ -262,4 +262,18 @@ sort时间复杂度 :O(NlogN)
 DFS:depth first search
 BFS:breadth first search
 
+----
+补充：
+#### c++编程tips
+用关键字new定义类对象
+```c++
+int* A = new int[5]; //分配保存5个int值的内存空间
 
+//下面代码，参考自[2.两数相加.cpp](2.两数相加.cpp)
+//定义类对象（指针）方法一：
+ListNode* node1 = new ListNode(0, nullptr); 
+//分配内存，调用构造函数，初始化对象。
+
+//定义类对象方法二：
+ListNode node2(0, nullptr);
+```
