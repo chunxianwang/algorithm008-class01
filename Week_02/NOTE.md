@@ -250,7 +250,7 @@ sort时间复杂度 :O(NlogN)
   1.有向和无向
   2.权重（变长）
 
-图的实现方式：临接矩阵 adjacency matrix、临接链表 adjacency list
+图的实现方式：邻接矩阵 adjacency matrix、邻接链表 adjacency list
 
 图的分类：
 1.无向无权图
